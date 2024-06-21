@@ -48,6 +48,11 @@
     text-align: center;
 }
 
+.text-align:hover{
+    background: none;
+    color: #000;
+}
+
 /* Căn chỉnh */
 .mt-8{
     margin-top: 8px;
@@ -84,10 +89,6 @@ html{
     font-family: Arial, Helvetica, sans-serif;
 }
 
-#main {
-    
-}
-
 #header {
     height: 46.5px;
     background-color: #000;  
@@ -95,7 +96,6 @@ html{
     top:0;
     left:0;
     right:0;
-    overflow: hidden;
     /* z-index: 1; */
 }
 
@@ -287,7 +287,7 @@ html{
 }
 
 #content .member-img{
-   width: 154px;
+   /* width: 154px; */
    border-radius: 4px;
 }
 
@@ -487,14 +487,23 @@ html{
     width: 100%;
 }
 
+.social-media { 
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    cursor: none;
+}
+
 .social-media i{
     color: #000;
     font-size: 24px;
+    padding: 0 5px;
 }
 
-.social-media a{
-    text-decoration: none;
+.social-media i:hover{
+    background-color: #ccc;
 }
+
 /* footer section */
 #footer {
     padding: 64px 16px;
@@ -502,6 +511,9 @@ html{
 
 .footer-produce{
     color: #ccc;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
 }
 
 @keyframes modalFadeIn{
@@ -514,18 +526,37 @@ html{
         transform: translateY(0);
     }
 }
-
+/*Mobile responsive*/
 @media(max-width:740px){
     #nav{
         display: block;
     }
 
+    #nav .subnav {
+        position: initial;
+        background-color: #333;
+        
+    }
+
+    #nav .subnav  a{
+        color: #fff;
+        padding: 5px 40px;
+    }
+
+
     #nav > li{
         display: block;
     }
 
+    #nav > li a{
+        padding: 1px 40px;
+    } 
+
     #nav >li:first-child{
         display: inline-block;
+    }
+    #header{
+        overflow: hidden;
     }
 
     #header .search-btn{
@@ -535,5 +566,30 @@ html{
     #header .mobile-menu{
         display: block;
     }
+
+    .col-member-item{
+        width: 100%;
+    }
+
+    .place-list .place-item{
+        margin-bottom: 16px;
+    }
+
+    .contact-form .form-control{
+        margin-bottom: 3px;
+    }
+
+    .submit-btn {
+        width: 100%;
+    }
+
+    .content-infor {
+        margin-bottom: 25px;
+    }
+
+    #content .member-name{
+        margin-top: 40px;
+    }
+    
 }
 

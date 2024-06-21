@@ -56,15 +56,15 @@
                 <p class="about-text">We have created a fictional band website. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                 <!-- img of member band -->
                 <div class="row member-list">
-                    <div class="col col-third text-align">
+                    <div class="col-member-item col col-third text-align">
                         <p class="member-name">Name</p>
                         <img src="/assets/img/band/member1.jpg" alt="Name" class="member-img">
                     </div>
-                    <div class="col col-third text-align">
+                    <div class="col-member-item col col-third text-align">
                         <p class="member-name">Name</p>
                         <img src="/assets/img/band/member1.jpg" alt="Name" class="member-img">
                     </div>
-                    <div class="col col-third text-align">
+                    <div class="col-member-item col col-third text-align">
                         <p class="member-name">Name</p>
                         <img src="/assets/img/band/member1.jpg" alt="Name" class="member-img">
                     </div>
@@ -88,7 +88,7 @@
 
                     <!-- Places -->
                     <div class="row place-list">
-                        <div class="col col-third place-item">
+                        <div class="col-member-item col col-third place-item">
                             <img src="./assets/img/places/newyork.jpg" alt="New York" class="place-img"> 
                             <div class="place-body">
                                 <h3 class="place-heading">New York</h3>
@@ -98,7 +98,7 @@
                             </div>  
                         </div>
 
-                        <div class="col col-third place-item">
+                        <div class="col-member-item col col-third place-item">
                             <img src="./assets/img/places/paris.jpg" alt="Paris "class="place-img"> 
                             <div class="place-body">
                                 <h3 class="place-heading">Paris</h3>
@@ -108,7 +108,7 @@
                             </div>     
                         </div>
 
-                        <div class="col col-third place-item">
+                        <div class="col-member-item col col-third place-item">
                             <img src="./assets/img/places/sanfran.jpg" alt="Sanfran "class="place-img"> 
                             <div class="place-body">
                                 <h3 class="place-heading">San Francisco</h3>
@@ -127,18 +127,18 @@
                 <h2 class="section-heading">CONTACT</h2>
                 <p class="section-sub-heading">Fan? Drop a note!</p>
                 <div class="row contact-content ">
-                    <div class="col col-haft content-infor">
+                    <div class="col-member-item col col-haft content-infor">
                         <p><i class="ti-location-pin"></i> Chicago, US</p>
-                        <p><i class="ti-mobile"></i> Phone: +00 151515</p>
-                        <p><i class="ti-email"></i>  Email: mail@mail.com</p>
+                        <p><i class="ti-mobile"></i> Phone: <a href="tel:+00 151515">+00 151515</a> </p>
+                        <p><i class="ti-email"></i>  Email: <a href="mailto:mail@mail.com">mail@mail.com</a></p>
                     </div>
-                    <div class="col col-haft contact-form">
+                    <div class="col-member-item col col-haft content-inforcol col-haft contact-form">
                         <form action="">
                             <div class="row ">
-                                <div class="col col-haft">
+                                <div class="col-member-item col col-haft">
                                     <input type="text" placeholder="Name" class="form-control">
                                 </div>
-                                <div class="col col-haft">
+                                <div class="col-member-item col col-haft">
                                     <input type="email" placeholder="Email" class="form-control">
                                 </div>
                             </div>
@@ -164,14 +164,14 @@
         <!-- START FOOTER SECTION-->
         <div id="footer">
             <div class="social-media text-align">
-                <a href="#"><i class="ti-facebook"></i></a>
-                <a href="#"><i class="ti-instagram"></i></a>
-                <a href="#"><i class="ti-pinterest"></i></a>
-                <a href="#"><i class="ti-linkedin"></i></a>
-                <a href="#"><i class="ti-twitter"></i></a>
-                <a href="#"><i class="ti-youtube"></i></a>
+                <i class="ti-facebook social-icon"></i>
+                <i class="ti-instagram social-icon"></i>
+                <i class="ti-pinterest social-icon"></i>
+                <i class="ti-linkedin social-icon"></i>
+                <i class="ti-twitter social-icon"></i>
+                <i class="ti-youtube social-icon"></i>
             </div>
-            <p class="footer-produce text-align mt-16">Powered by <span><a style="
+            <p class="footer-produce mt-16">Powered by <span><a style="
                 color: #757575;" href="#">w3scc</a></span></p>
 
         </div>
@@ -235,7 +235,7 @@
         })
         // end
 
-        //handle responsive moblie
+        // Handle responsive moblie
         var header=document.getElementById('header');
         var menuMobile=document.getElementById('mobile-icon');
         var currentHeight= header.clientHeight;
@@ -247,12 +247,19 @@
                 header.style.height=null;
             }
         }
+
+        // Auto close when it click on menu
         var menuItems=document.querySelectorAll('#nav li a[href*="#"]');
         for(var i = 0 ; i < menuItems.length ; i++){
             var menuItem = menuItems[i];
-            console.log(menuItem);
-            menuItem.onclick=function(){
-                header.style.height=null;
+            menuItem.onclick=function(item){
+                //kiểm tra xem còn thẻ khác phía sau không
+                var isParentMenu= this.nextElementSibling && this.nextElementSibling.classList.contains('subnav');
+                if(isParentMenu){
+                    item.preventDefault(); // ngăn cản, bỏ qua mặc định của thẻ a là click vào để điều hướng
+                }else{
+                    header.style.height=null;   
+                }
             }
         }
     </script>
